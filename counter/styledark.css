@@ -1,0 +1,43 @@
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+body { background:#1e1e2f; color:#e0e0e0; display:flex; height:100vh; overflow:hidden; }
+
+/* SIDEBAR */
+.sidebar { width:280px; background:#2c2a4a; color:#fff; padding:20px; overflow-y:auto; }
+.sidebar h3 { text-align:center; margin-bottom:20px; color:#f0f0f0; }
+.sidebar table { width:100%; border-collapse:collapse; }
+.sidebar td { padding:10px; font-size:20px; text-align:center; color:#e0e0e0; }
+.sidebar button { background:#f58436; border:none; padding:6px 12px; color:white; border-radius:6px; cursor:pointer; }
+.sidebar button:hover { background:#1d4eb8; }
+
+/* MAIN */
+.main { flex:1; padding:20px; display:flex; flex-direction:column; align-items:center; overflow-y:auto; }
+.top-bar { width:100%; display:flex; justify-content:flex-start; margin-bottom:20px; }
+.top-bar button { background:#f58436; border:none; padding:12px 24px; font-size:18px; color:white; border-radius:8px; cursor:pointer; }
+.top-bar button:hover { background:#d2732f; }
+
+/* NEXT BOX */
+.next-box { width:260px; height:200px; border:2px solid #555; border-radius:12px; text-align:center; padding:10px; margin-bottom:30px; background:#2c2a4a; color:#e0e0e0; }
+.next-box h2 { margin-bottom:10px; }
+
+/* DISPLAY */
+.display-antrian { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; }
+.display-antrian h1 { font-size:140px; font-weight:bold; color:#f58436; }
+
+/* ACTION BUTTONS */
+.actions { display:flex; gap:20px; }
+.actions form button, .actions button { background:#423f90; color:white; padding:12px 22px; font-size:18px; border:none; border-radius:8px; cursor:pointer; }
+.actions button:hover { background:#312f6d; }
+
+/* CATATAN */
+.notes { background:#2c2a4a; border-radius:12px; padding:20px; margin-top:30px; width:80%; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.notes h2 { margin-bottom:15px; font-size:22px; color:#f0f0f0; }
+.notes ul { list-style:none; }
+.notes ul li { margin-bottom:10px; font-size:16px; padding-left:24px; position:relative; color:#e0e0e0; }
+.notes ul li::before { content:"✔"; position:absolute; left:0; color:#10b981; font-weight:bold; }
+
+.sidebar img.logo {
+    max-width:250px;
+    margin-bottom:15px;
+    filter: brightness(0) invert(1); /* Buat logo lebih terlihat di dark mode */
+}
