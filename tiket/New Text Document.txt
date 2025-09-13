@@ -1,0 +1,29 @@
+<?php 
+   $sqlsyaraf = mysql_query("SELECT * FROM tbl_bpjs_rajal WHERE poli = 'Poli Syaraf'");
+  $rowsyaraf = mysql_num_rows($sqlsyaraf);
+  if ($date == "Monday" || $date == "Thursday" ||  $date == "Tuesday" || $date == "Friday"){
+  if ($rowsyaraf < 15 ){
+
+	  echo"
+	  <div class='w3-display-middleleft3' id='feature3'>
+	  <a href='submenurajalbpjs.php?act=polisyaraf' class='btn btn-lg btn-default wow fadeInUp'>
+		<p>POLI SYARAF</p>
+	  </a>
+	  </div>";
+  } else {
+	   echo"
+	  <div class='w3-display-middleleft3' id='feature3'>
+	  <a href='submenurajalbpjs.php?act=tutup' class='w3-black btn btn-lg btn-default wow fadeInUp'>
+		<p>POLI SYARAF</p>
+	  </a>
+	  </div>";
+  } 
+  } else {
+	     echo"
+	  <div class='w3-display-middleleft2' id='feature3'>
+	  <a href='submenurajalbpjs.php?act=tdkpraktek' class='w3-black btn btn-lg btn-default wow fadeInUp'>
+		<p>POLI MATA</p>
+	  </a>
+		</div>";
+	}
+  ?>
