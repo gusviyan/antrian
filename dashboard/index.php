@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Antrian RS Permata Pamulang</title>
-  <link rel="stylesheet" href="style.css"> <!-- gunakan css lama yang sudah dipakai -->
+  <link rel="stylesheet" href="./css/style.css"> <!-- gunakan css lama yang sudah dipakai -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     function loadAntrian() {
@@ -21,7 +21,7 @@
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo RS" style="height:40px;">
+    <img src="./images/logo.png" alt="Logo RS" style="height:40px;">
 	<style>
 		<?php include "style.css"; ?>
 	</style>
@@ -48,7 +48,7 @@
     <!-- Kolom kanan -->
     <div class="right">
       <div class="box image-box">
-        <img src="picture.jpeg" alt="Informasi RS">
+        <img src="./images/picture.jpeg" alt="Informasi RS">
       </div>
       <div class="bottom-row">
         <div class="box">

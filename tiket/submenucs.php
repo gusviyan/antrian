@@ -29,30 +29,6 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};
     return i;
 }
-
-function openWin(n) {
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Augustus','September','Oktober','November','Desember'];
-    let d = date.getDate();
-    let day = date.getDay();
-    let days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-    let h = date.getHours(); if(h<10){h = "0"+h;}
-    let m = date.getMinutes(); if(m<10){m = "0"+m;}
-    let s = date.getSeconds(); if(s<10){s = "0"+s;}
-    let result = days[day]+', '+d+' '+months[month]+' '+year+', '+h+':'+m+':'+s;
-
-    let myWindow = window.open("", "myWindow", "width=2,height=1");
-    myWindow.document.write(
-        "<center><h3>Customer Care</h3>" +
-        "<h1 style='font-size:500%;'>CS" + n +"</h1>" +
-        "<p>Silahkan Mengambil No Antrian Yang Baru Bila No Antrian Anda Terlewat</p>" +
-        result + "</center>"
-    );
-    myWindow.print();
-    myWindow.close();
-}
 </script>
 </head>
 <body onload="startTime()">
@@ -115,7 +91,7 @@ if (isset($_GET['act']) && $_GET['act'] == "rajal") {
     $data = mysqli_fetch_assoc($cek);
     $numrow = $data['total'] ?? 0;
 
-    if (($date == "Saturday" && $numrow >= 30) || ($date != "Saturday" && $numrow >= 100)) {
+    if (($date == "Saturday" && $numrow >= 30) || ($date != "Saturday" && $numrow >= 80)) {
         echo "
         <div class='menu-box'>
             <div class='menu-option btn-large'>
@@ -130,20 +106,20 @@ if (isset($_GET['act']) && $_GET['act'] == "rajal") {
         $tambah = $numrow + 1;
         mysqli_query($conn, "INSERT INTO tbl_cs (id, keterangan, status, panggil, loket) 
                      VALUES ($tambah, 'CUSTOMER CARE', 0, 0, 0)");
+
+        // popup antrian
         echo "
-        <div class='menu-box'>
-            <div class='menu-option btn-large'>
-                <h2>CUSTOMER CARE</h2>
+        <div class='popup-overlay'>
+            <div class='popup-box'>
+                <h2>Antrian</h2>
+                <h3>Customer Care</h3>
                 <h1 style='font-size:4rem;'>CS$tambah</h1>
-                <h3>BPJS</h3>
+                <p>Silakan tunggu nomor Anda dipanggil</p>
             </div>
         </div>
-        <div class='bottom-box'>
-            <a href='index.html' class='menu-option btn-small'>Kembali</a>
-        </div>
+
         <script type='text/javascript'>
-            openWin($tambah);
-            setTimeout(function () { window.location.href = 'index.html'; }, 2000);
+            setTimeout(function () { window.location.href = 'index.html'; }, 4000);
         </script>
         ";
     }
@@ -151,5 +127,6 @@ if (isset($_GET['act']) && $_GET['act'] == "rajal") {
 }
 ?>
 </div>
+
 </body>
 </html>

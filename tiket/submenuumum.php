@@ -62,9 +62,9 @@ $op = "23:59";
 $cl = "07:00";
 
 if ($date == "sunday"){
-    echo "<a href='submenuumum.php?act=tdkpraktek' class='btn'>RAWAT JALAN</a>";
+    echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
 } else if ($cenvertedTime > $op || $cenvertedTime < $cl){
-    echo "<a href='submenuumum.php?act=tutup' class='btn'>RAWAT JALAN</a>";
+    echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
 } else {
     echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
 }

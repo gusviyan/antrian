@@ -9,7 +9,7 @@ $act=$_GET['act']??'';
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Counter Loket 5 - CS</title>
 <script src="index_files/jquery.min.js"></script>
-<link rel="stylesheet" href="styledark.css">
+<link rel="stylesheet" href="style-glass.css">
 <script>
 $(function(){ $('#auto').load('load5.php'); setInterval(()=>$('#auto').load('load5.php'),2000); });
 </script>

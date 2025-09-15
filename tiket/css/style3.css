@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: url("../images/slide-21.jpg") no-repeat center center/cover;
+  background: url("../images/glass.png") no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,4 +66,11 @@ body {
     font-size: 1.8rem;
     padding: 25px;
   }
+}
+
+.logo {
+    max-width:250px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }

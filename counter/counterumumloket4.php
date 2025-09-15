@@ -9,7 +9,7 @@ $act=$_GET['act']??'';
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Counter Loket 4 - BPJS</title>
 <script src="index_files/jquery.min.js"></script>
-<link rel="stylesheet" href="styledark.css">
+<link rel="stylesheet" href="style-glass.css">
 <script>
 $(function(){ $('#auto').load('load4.php'); setInterval(()=>$('#auto').load('load4.php'),2000); });
 </script>
