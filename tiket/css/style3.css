@@ -2,15 +2,16 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;             /* supaya tidak overflow */
   background: url("../images/glass.png") no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Segoe UI", sans-serif;
+  overflow: hidden;              /* hilangkan scrollbar */
 }
 
-/* Hilangkan overlay full, cukup tombol yang glass */
+/* Overlay */
 .overlay {
   width: 100%;
   height: 100%;
@@ -19,17 +20,17 @@ body {
   justify-content: center;
 }
 
-/* Container menu (tanpa box background menutupi) */
+/* Container menu */
 .menu-box {
   display: flex;
   flex-direction: column;
-  gap: 40px; /* jarak antar tombol */
+  gap: 40px;
   text-align: center;
   max-width: 900px;
   width: 95%;
 }
 
-/* Tombol menu dengan efek glass */
+/* Tombol menu glass */
 .menu-option {
   display: block;
   font-size: 2.6rem;
@@ -42,7 +43,7 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
@@ -68,9 +69,71 @@ body {
   }
 }
 
+/* Logo */
 .logo {
-    max-width:250px;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+  max-width: 250px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* RUNNING TEXT */
+.marquee {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  padding: 6px 0;
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* HEADER */
+header {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 15px 25px;                 /* lebih besar agar teks muat */
+  height: 30px;                       /* fix height */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+header h1 {
+  position: flex;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  margin: 0;
+  white-space: nowrap;   /* cegah teks pecah */
 }
