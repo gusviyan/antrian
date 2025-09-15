@@ -15,7 +15,7 @@ $(function(){ $('#auto').load('load4.php'); setInterval(()=>$('#auto').load('loa
 </script>
 </head>
 <body>
-<div class="sidebar">
+<div class="sidebar glass">
 	<img src="logo.png" alt="Logo" class="logo">
 	<h3>Loket 4</h3>
   <h3>ANTRIAN HOLD</h3>
@@ -36,8 +36,8 @@ $(function(){ $('#auto').load('load4.php'); setInterval(()=>$('#auto').load('loa
   $callLink=mysqli_num_rows($cek)>0?"counterumumloket4.php?act=call":"counterumumloket4.php?act=default";
   ?>
   <div class="top-bar"><a href="<?=$callLink?>"><button>Call</button></a></div>
-  <div class="next-box"><h2>Next</h2><div id="auto"></div></div>
-  <div class="display-antrian">
+  <div class="next-box glass"><h2>Next</h2><div id="auto"></div></div>
+  <div class="display-antrian glass">
   <?php
   switch($act){
     case "call":
@@ -60,7 +60,7 @@ $(function(){ $('#auto').load('load4.php'); setInterval(()=>$('#auto').load('loa
     default: echo "<h1>Belum ada antrian</h1>";
   } ?>
   </div>
-  <div class="notes"><h2>Catatan</h2><ul>
+  <div class="notes glass"><h2>Catatan</h2><ul>
     <?php if($act!="call"){echo "<li>Klik <b>Call</b> untuk memanggil nomor selanjutnya</li><li>Klik <b>Callback</b> untuk memanggil nomor hold</li>";}
     else{echo "<li>Klik <b>Play Audio</b> untuk suara</li><li>Klik <b>Hold</b> untuk menunda</li><li>Klik <b>Clear</b> untuk selesai</li>";}?>
   </ul></div>

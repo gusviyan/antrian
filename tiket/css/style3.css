@@ -1,0 +1,69 @@
+/* Background full page */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url("../images/slide-21.jpg") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Hilangkan overlay full, cukup tombol yang glass */
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container menu (tanpa box background menutupi) */
+.menu-box {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* jarak antar tombol */
+  text-align: center;
+  max-width: 900px;
+  width: 95%;
+}
+
+/* Tombol menu dengan efek glass */
+.menu-option {
+  display: block;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  padding: 50px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.menu-option:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-box {
+    gap: 25px;
+  }
+  .menu-option {
+    font-size: 1.8rem;
+    padding: 25px;
+  }
+}

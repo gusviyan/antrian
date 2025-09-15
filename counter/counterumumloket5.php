@@ -15,7 +15,7 @@ $(function(){ $('#auto').load('load5.php'); setInterval(()=>$('#auto').load('loa
 </script>
 </head>
 <body>
-<div class="sidebar">
+<div class="sidebar glass">
 	<img src="logo.png" alt="Logo" class="logo">
 	<h3>Loket CS</h3>
   <h3>ANTRIAN HOLD</h3>
@@ -38,9 +38,9 @@ $(function(){ $('#auto').load('load5.php'); setInterval(()=>$('#auto').load('loa
   ?>
   <div class="top-bar"><a href="<?=$callLink?>"><button>Call</button></a></div>
 
-  <div class="next-box"><h2>Next</h2><div id="auto"></div></div>
+  <div class="next-box glass"><h2>Next</h2><div id="auto"></div></div>
 
-  <div class="display-antrian">
+  <div class="display-antrian glass">
   <?php
   switch($act){
     case "call":
@@ -75,7 +75,7 @@ $(function(){ $('#auto').load('load5.php'); setInterval(()=>$('#auto').load('loa
   ?>
   </div>
 
-  <div class="notes"><h2>Catatan</h2><ul>
+  <div class="notes glass"><h2>Catatan</h2><ul>
     <?php 
     if($act!="call"){
       echo "<li>Klik <b>Call</b> untuk memanggil nomor selanjutnya</li>

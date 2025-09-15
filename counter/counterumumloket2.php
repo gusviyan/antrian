@@ -20,7 +20,7 @@ $act = $_GET['act'] ?? '';
 <title>Counter Loket 2</title>
 <script src="index_files/jquery.min.js"></script>
 <style>
-<?php include "styledark.css"; ?>
+<?php include "style-glass.css"; ?>
 </style>
 <script>
 $(document).ready(function(){
@@ -47,7 +47,7 @@ function ensureAudioPlay(audio) {
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar">
+<div class="sidebar glass">
 	<img src="logo.png" alt="Logo" class="logo">
 	<h3>Loket 2</h3>
   <h3>ANTRIAN HOLD</h3>
@@ -91,13 +91,13 @@ function ensureAudioPlay(audio) {
   </div>
 
   <!-- NEXT -->
-  <div class="next-box">
+  <div class="next-box glass">
     <h2>Next</h2>
     <div id="auto"></div>
   </div>
 
   <!-- DISPLAY -->
-  <div class="display-antrian">
+  <div class="display-antrian glass">
     <?php
     switch ($act) {
       case "call":
@@ -155,7 +155,7 @@ function ensureAudioPlay(audio) {
   </div>
 
   <!-- CATATAN -->
-  <div class="notes">
+  <div class="notes glass">
     <h2>Catatan</h2>
     <ul>
       <?php
