@@ -104,6 +104,7 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 70%;
 }
 .iframe-wrapper {
   width: 100%;

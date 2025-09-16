@@ -30,11 +30,6 @@ function checkTime(i) {
     return i;
 }
 
-  let myWindow = window.open("", "myWindow", "width=2,height=1");
-  myWindow.document.write("<center><h3>Custopmer Care</h3><h1 style='font-size:500%;'>B" + n + "</h1><p> Silahkan Mengambil No Antrian Yang Baru Bila No Antrian Anda Terlewat </p>" + result + "</center>");
-  myWindow.print();
-  myWindow.close();
-
 </script>
 </head>
 <body onload="startTime()">
@@ -89,7 +84,7 @@ if ($date == "monday") {
 // ambil nomor antrian
 if (isset($_GET['act']) && $_GET['act'] == "rajal") {
     $date = date('l');
-    $conn = mysqli_connect("localhost", "root", "", "antrian");
+    $conn = mysqli_connect("localhost", "root", "root", "antrian");
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
@@ -113,21 +108,33 @@ if (isset($_GET['act']) && $_GET['act'] == "rajal") {
         mysqli_query($conn, "INSERT INTO tbl_cs (id, keterangan, status, panggil, loket) 
                      VALUES ($tambah, 'CUSTOMER CARE', 0, 0, 0)");
 
-        // popup antrian
-        echo "
-        <div class='popup-overlay'>
-            <div class='popup-box'>
-                <h2>Antrian</h2>
-                <h3>Customer Care</h3>
-                <h1 style='font-size:4rem;'>CS$tambah</h1>
-                <p>Silakan tunggu nomor Anda dipanggil</p>
-            </div>
-        </div>
+       // popup antrian + auto print
+echo "
+<div class='popup-overlay'>
+    <div class='popup-box'>
+        <h2>Antrian</h2>
+        <h3>Customer Care</h3>
+        <h1 style='font-size:4rem;'>CS$tambah</h1>
+        <p>Silakan tunggu nomor Anda dipanggil</p>
+    </div>
+</div>
 
-        <script type='text/javascript'>
-            setTimeout(function () { window.location.href = 'index.html'; }, 4000);
-        </script>
-        ";
+<script type='text/javascript'>
+    // buka window kecil untuk print
+    let w = window.open('', 'PRINT', 'width=400,height=600');
+    w.document.write('<html><head><title>Print Antrian</title></head><body>');
+    w.document.write(\"<center><h3>Customer Care</h3><h1 style='font-size:500%;'>CS$tambah</h1><p>Silahkan tunggu nomor Anda dipanggil</p></center>\");
+    w.document.write('</body></html>');
+    w.document.close();
+    w.focus();
+    w.print();
+    w.close();
+
+    // kembali ke index
+    setTimeout(function () { window.location.href = 'index.html'; }, 4000);
+</script>
+";
+
     }
     mysqli_close($conn);
 }
