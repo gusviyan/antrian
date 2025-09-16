@@ -18,7 +18,7 @@
 
     <!-- KIRI (Loket 1 - 4 dari bawah ke atas) -->
     <div class="left">
-      <div class="box"><h1>Customer Care</h1><div id="auto4">0</div></div>
+      <div class="box"><h1>Customer Care</h1><div id="auto5">0</div></div>
       <div class="box"><h1>Loket 4</h1><div id="auto4">0</div></div>
       <div class="box"><h1>Loket 3</h1><div id="auto3">0</div></div>
       <div class="box"><h1>Loket 2</h1><div id="auto2">0</div></div>
