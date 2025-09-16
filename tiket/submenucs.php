@@ -29,6 +29,12 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};
     return i;
 }
+
+  let myWindow = window.open("", "myWindow", "width=2,height=1");
+  myWindow.document.write("<center><h3>Custopmer Care</h3><h1 style='font-size:500%;'>B" + n + "</h1><p> Silahkan Mengambil No Antrian Yang Baru Bila No Antrian Anda Terlewat </p>" + result + "</center>");
+  myWindow.print();
+  myWindow.close();
+
 </script>
 </head>
 <body onload="startTime()">
