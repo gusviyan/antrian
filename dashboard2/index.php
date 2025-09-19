@@ -10,8 +10,8 @@
 
   <!-- HEADER -->
   <header>
-    <h1>RS Permata Pamulang</h1>
-  </header>
+    <img src="./images/logo.png" alt="Logo RS" style="height:40px;">
+    </header>
 
   <!-- MAIN CONTENT -->
   <div class="main">
@@ -50,7 +50,7 @@
         $('#auto2').load('load2.php');
         $('#auto3').load('load3.php');
         $('#auto4').load('load4.php');
-        $('#auto4').load('load5.php');
+        $('#auto5').load('load5.php');
       }, 2000);
     });
   </script>
