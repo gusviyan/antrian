@@ -10,7 +10,7 @@
 
   <!-- HEADER -->
   <header>
-    <img src="./images/logo.png" alt="Logo RS" style="height:40px;">
+    <img src="./images/logo-color.png" alt="Logo RS" style="height:40px;">
     </header>
 
   <!-- MAIN CONTENT -->

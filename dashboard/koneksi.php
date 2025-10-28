@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $database = "antrian";
 
 // Koneksi dan memilih database di server (PHP 8, gunakan mysqli)

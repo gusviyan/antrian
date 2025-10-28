@@ -90,7 +90,10 @@ $(function(){ $('#auto').load('load5.php'); setInterval(()=>$('#auto').load('loa
   <audio id="container" autoplay></audio>
   <script src="audioloket5.js"></script>
 </div>
-
+  <!-- ==== Footer ==== -->
+<footer class="glass-footer">
+  © 2025 Gusviyan - IT Dept RS Permata Pamulang | All Right Reserved
+</footer>
 
 
 </body>

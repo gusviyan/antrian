@@ -22,9 +22,6 @@
 <body>
   <header>
     <img src="./images/logo.png" alt="Logo RS" style="height:40px;">
-	<style>
-		<?php include "style.css"; ?>
-	</style>
     <h1>Antrian RS Permata Pamulang</h1>
   </header>
 

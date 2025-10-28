@@ -174,6 +174,10 @@ function ensureAudioPlay(audio) {
   <!-- Audio -->
   <audio id="container" autoplay=""></audio>
   <script src="audioloket2.js"></script>
+    <!-- ==== Footer ==== -->
+<footer class="glass-footer">
+  © 2025 Gusviyan - IT Dept RS Permata Pamulang | All Right Reserved
+</footer>
 </div>
 </body>
 </html>

@@ -9,7 +9,7 @@
 }
 
 body {
-  background: url("../images/glass.png") no-repeat center center/cover;
+  background: url("../images/bg.jpg") no-repeat center center/cover;
   background-size: cover;
   color: #fff;
   text-align: center;
@@ -37,6 +37,7 @@ body {
   display: inline-block;
   background: rgba(255,255,255,0.15);
   color: #fff;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
   padding: 35px 70px;
   font-size: 2.4rem;
   font-weight: 700;

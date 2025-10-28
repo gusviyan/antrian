@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-  background: url(images/glass.png) no-repeat center center fixed;
+  background: url(images/bg.jpg) no-repeat center center fixed;
   background-size: cover;
   color: #e0e0e0;
   display: flex;
@@ -45,6 +45,7 @@ body {
   text-align: center;
   margin-bottom: 20px;
   color: #f0f0f0;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
 }
 .sidebar table {
   width: 100%;
@@ -54,10 +55,11 @@ body {
   padding: 10px;
   font-size: 20px;
   text-align: center;
-  color: #e0e0e0;
+  color: #ffffff;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
 }
 .sidebar button {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.282);
   border: none;
   padding: 6px 12px;
   color: white;
@@ -95,6 +97,7 @@ body {
   padding: 12px 24px;
   font-size: 18px;
   color: white;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
@@ -113,9 +116,11 @@ body {
   text-align: center;
   padding: 10px;
   margin-bottom: 30px;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
 }
 .next-box.glass { }
-.next-box h2 { margin-bottom: 35px; }
+.next-box h2 { margin-bottom: 35px;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805); }
 
 /* DISPLAY */
 .display-antrian {
@@ -134,8 +139,8 @@ body {
 .display-antrian h1 {
   font-size: 140px;
   font-weight: bold;
-  color: #fad5ba;
-  text-shadow: 0 4px 14px rgba(245,132,54,0.3);
+  color: #ffffff;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
 }
 
 /* ACTION BUTTONS */
@@ -146,8 +151,9 @@ body {
 }
 .actions form button,
 .actions button {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.282);
   color: white;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
   padding: 12px 22px;
   font-size: 18px;
   border: none;
@@ -172,6 +178,7 @@ body {
   margin-bottom: 15px;
   font-size: 22px;
   color: #f0f0f0;
+  text-shadow: 0 5px 15px rgba(2, 1, 13, 0.805);
 }
 .notes ul {
   list-style: none;
@@ -181,7 +188,7 @@ body {
   font-size: 16px;
   padding-left: 24px;
   position: relative;
-  color: #e0e0e0;
+  color: #ffffff;
 }
 .notes ul li::before {
   content: "✔";
@@ -195,5 +202,27 @@ body {
 .sidebar img.logo {
   max-width: 250px;
   margin-bottom: 15px;
-  filter: brightness(0) invert(1);
+  /* filter: brightness(0) invert(1); */
+}
+
+/* ==== Footer Glassmorph ==== */
+footer.glass-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  z-index: 10;
+}
+
+/* Tambahkan sedikit ruang di bawah konten agar tidak tertutup footer */
+body {
+  padding-bottom: 60px;
 }

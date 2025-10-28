@@ -68,6 +68,9 @@ $(function(){ $('#auto').load('load.php'); setInterval(()=>$('#auto').load('load
   </ul></div>
   <audio id="container" autoplay></audio>
   <script src="audioloket1.js"></script>
-</div>
+  <!-- ==== Footer ==== -->
+<footer class="glass-footer">
+  © 2025 Gusviyan - IT Dept RS Permata Pamulang | All Right Reserved
+</footer>
 </body>
 </html>
