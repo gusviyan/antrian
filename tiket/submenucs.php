@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include "koneksi.php";
+date_default_timezone_set('Asia/Bangkok');
 ?>
 <html>
 <head>
@@ -29,39 +30,54 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};
     return i;
 }
-
 </script>
 </head>
+
 <body onload="startTime()">
 
 <div id="txt"></div>
 
 <div class="overlay">
 <?php
-date_default_timezone_set('Asia/Bangkok');
-$date = date("l");
-$hour = date("H:i");
-$cenvertedTime = date('H:i', strtotime('+10 minutes', strtotime($hour)));
-$op = "18:00";
-$cl = "07:00";
+// Ambil data waktu & hari
+$hari = strtolower(date("l")); // monday, tuesday, ...
+$jamSekarang = date("H:i");
 
-if ($date == "monday") {
-    echo "
+// Tentukan jam buka dan kuota
+if (in_array($hari, ["monday", "tuesday", "wednesday", "thursday", "friday"])) {
+    $jamBuka = "07:00";
+    $jamTutup = "14:00";
+    $kuotaMaks = 100;
+} elseif ($hari == "saturday") {
+    $jamBuka = "07:00";
+    $jamTutup = "11:00";
+    $kuotaMaks = 40;
+} else {
+    $jamBuka = null; // Minggu
+}
+
+// === TAMPILAN MENU UTAMA ===
+if ($hari == "sunday") {
+        echo "
     <div class='menu-box'>
-        <a href='submenucs.php?act=tdkpraktek' class='menu-option btn-large'>
-            CUSTOMER CARE
-        </a>
+        <div class='menu-option btn-large'>
+            <h2>Mohon maaf, Customer Care tidak melayani pengambilan antrian pada hari Minggu.</h2>
+        </div>
     </div>
     <div class='bottom-box'>
         <a href='index.html' class='menu-option btn-small'>Kembali</a>
     </div>
-    ";
-} elseif ($cenvertedTime > $op || $cenvertedTime < $cl) {
+        <script>
+            setTimeout(function(){ window.location.href = 'index.html'; }, 4000);
+        </script>
+        ";
+        exit;
+} elseif ($jamSekarang < $jamBuka || $jamSekarang > $jamTutup) {
     echo "
     <div class='menu-box'>
         <div class='menu-option btn-large'>
             <h2>Mohon Maaf Customer Care Sudah Tutup</h2>
-            <p>Silahkan hubungi bagian Pendaftaran</p>
+            <p>Jam Layanan: $jamBuka - $jamTutup</p>
         </div>
     </div>
     <div class='bottom-box'>
@@ -81,18 +97,38 @@ if ($date == "monday") {
     ";
 }
 
-// ambil nomor antrian
+// === PROSES AMBIL ANTRIAN ===
 if (isset($_GET['act']) && $_GET['act'] == "rajal") {
-    $date = date('l');
+
+    // Jika hari Minggu dan user memaksa ambil tiket
+    if ($hari == "sunday") {
+        echo "
+    <div class='menu-box'>
+        <div class='menu-option btn-large'>
+            <h2>Mohon Maaf Customer Care Sudah Tutup</h2>
+            <p>Jam Layanan: $jamBuka - $jamTutup</p>
+        </div>
+    </div>
+    <div class='bottom-box'>
+        <a href='index.html' class='menu-option btn-small'>Kembali</a>
+    </div>
+        <script>
+            setTimeout(function(){ window.location.href = 'index.html'; }, 4000);
+        </script>
+        ";
+        exit;
+    }
+
     $conn = mysqli_connect("localhost", "root", "root", "antrian");
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
+
     $cek = mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_cs");
     $data = mysqli_fetch_assoc($cek);
     $numrow = $data['total'] ?? 0;
 
-    if (($date == "Saturday" && $numrow >= 30) || ($date != "Saturday" && $numrow >= 80)) {
+    if ($numrow >= $kuotaMaks) {
         echo "
         <div class='menu-box'>
             <div class='menu-option btn-large'>
@@ -106,36 +142,33 @@ if (isset($_GET['act']) && $_GET['act'] == "rajal") {
     } else {
         $tambah = $numrow + 1;
         mysqli_query($conn, "INSERT INTO tbl_cs (id, keterangan, status, panggil, loket) 
-                     VALUES ($tambah, 'CUSTOMER CARE', 0, 0, 0)");
+                             VALUES ($tambah, 'CUSTOMER CARE', 0, 0, 0)");
 
-       // popup antrian + auto print
-echo "
-<div class='popup-overlay'>
-    <div class='popup-box'>
-        <h2>Antrian</h2>
-        <h3>Customer Care</h3>
-        <h1 style='font-size:4rem;'>CS$tambah</h1>
-        <p>Silakan tunggu nomor Anda dipanggil</p>
-    </div>
-</div>
+        echo "
+        <div class='popup-overlay'>
+            <div class='popup-box'>
+                <h2>Antrian</h2>
+                <h3>Customer Care</h3>
+                <h1 style='font-size:4rem;'>CS$tambah</h1>
+                <p>Silakan tunggu nomor Anda dipanggil</p>
+            </div>
+        </div>
 
-<script type='text/javascript'>
-    // buka window kecil untuk print
-    let w = window.open('', 'PRINT', 'width=400,height=600');
-    w.document.write('<html><head><title>Print Antrian</title></head><body>');
-    w.document.write(\"<center><h3>Customer Care</h3><h1 style='font-size:500%;'>CS$tambah</h1><p>Silahkan tunggu nomor Anda dipanggil</p></center>\");
-    w.document.write('</body></html>');
-    w.document.close();
-    w.focus();
-    w.print();
-    w.close();
+        <script type='text/javascript'>
+            let w = window.open('', 'PRINT', 'width=400,height=600');
+            w.document.write('<html><head><title>Print Antrian</title></head><body>');
+            w.document.write(\"<center><h3>Customer Care</h3><h1 style='font-size:500%;'>CS$tambah</h1><p>Silahkan tunggu nomor Anda dipanggil</p></center>\");
+            w.document.write('</body></html>');
+            w.document.close();
+            w.focus();
+            w.print();
+            w.close();
 
-    // kembali ke index
-    setTimeout(function () { window.location.href = 'index.html'; }, 4000);
-</script>
-";
-
+            setTimeout(function () { window.location.href = 'index.html'; }, 4000);
+        </script>
+        ";
     }
+
     mysqli_close($conn);
 }
 ?>

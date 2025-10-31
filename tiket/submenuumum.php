@@ -61,15 +61,11 @@ $cenvertedTime = date('H:i',strtotime('+10 minutes',strtotime($hour)));
 $op = "23:59";
 $cl = "07:00";
 
-if ($date == "sunday"){
+
     echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
-} else if ($cenvertedTime > $op || $cenvertedTime < $cl){
-    echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
-} else {
-    echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
-}
+
 ?>
-    <a href="submenuranapumum.php?act=ranap" class="btn">RAWAT INAP</a>
+    <a href="#" class="btn">RAWAT INAP</a>
 </div>
 
 <!-- tombol kembali -->
