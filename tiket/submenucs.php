@@ -50,8 +50,8 @@ if (in_array($hari, ["monday", "tuesday", "wednesday", "thursday", "friday"])) {
     $kuotaMaks = 100;
 } elseif ($hari == "saturday") {
     $jamBuka = "07:00";
-    $jamTutup = "11:00";
-    $kuotaMaks = 40;
+    $jamTutup = "10:00";
+    $kuotaMaks = 30;
 } else {
     $jamBuka = null; // Minggu
 }
