@@ -67,7 +67,7 @@ function openWin(n) {
       echo "<a href='submenubpjs.php?act=rajal' class='btn'>RAWAT JALAN</a>";
   }
   ?>
-  <a href="submenuranapbpjs.php?act=ranap" class="btn">RAWAT INAP</a>
+  <a href="#" class="btn">RAWAT INAP</a>
 </div>
 
 <div class="homebtn">

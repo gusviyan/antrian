@@ -59,7 +59,7 @@ $date = date("l");
 $hour = date("H:i");
 $cenvertedTime = date('H:i',strtotime('+10 minutes',strtotime($hour)));
 $op = "23:59";
-$cl = "07:00";
+$cl = "00:00";
 
 
     echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
