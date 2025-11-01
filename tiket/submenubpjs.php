@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<?php
-include "koneksi.php";
-date_default_timezone_set('Asia/Bangkok');
-?>
-<html>
+<?php include "koneksi.php"; ?>
+<html lang="id">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>ANTRIAN RS PERMATA PAMULANG</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="10;url=index.html" />
-
-<!-- hanya gunakan stylecs.css -->
-<link rel="stylesheet" href="css/stylecs.css">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>ANTRIAN RS PERMATA PAMULANG</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="10;url=index.html" />
+  <link rel="stylesheet" href="css/stylesub.css">
+</head>
 
 <script>
 function startTime() {
@@ -23,149 +19,125 @@ function startTime() {
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('txt').innerHTML =
-        today.toDateString() + " " + h + ":" + m + ":" + s;
+    today.toDateString() + " " + h + ":" + m + ":" + s;
     setTimeout(startTime, 500);
 }
 function checkTime(i) {
-    if (i < 10) {i = "0" + i};
-    return i;
+    return (i < 10) ? "0" + i : i;
+}
+function openWin(n) {
+  let date = new Date;
+  let year = date.getFullYear();
+  let month = date.getMonth();
+  let months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Augustus','September','Oktober','November','Desember'];
+  let d = date.getDate();
+  let day = date.getDay();
+  let days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  let h = (date.getHours()<10?"0":"")+date.getHours();
+  let m = (date.getMinutes()<10?"0":"")+date.getMinutes();
+  let s = (date.getSeconds()<10?"0":"")+date.getSeconds();
+  let result = days[day]+', '+d+' '+months[month]+' '+year+', '+h+':'+m+':'+s;
+
+  let myWindow = window.open("", "myWindow", "width=2,height=1");
+  myWindow.document.write("<center><h3>BPJS</h3><h1 style='font-size:500%;'>B" + n + "</h1><p> Silahkan Mengambil No Antrian Yang Baru Bila No Antrian Anda Terlewat </p>" + result + "</center>");
+  myWindow.print();
+  myWindow.close();
 }
 </script>
-</head>
+
 
 <body onload="startTime()">
 
 <div id="txt"></div>
 
-<div class="overlay">
-<?php
-// Ambil data waktu & hari
-$hari = strtolower(date("l")); // monday, tuesday, ...
-$jamSekarang = date("H:i");
+<div class="container-btn">
+  <?php
+  date_default_timezone_set('Asia/Bangkok');
+  $date = date("l");
+  $hour = date("H:i");
+  $cenvertedTime = date('H:i',strtotime('+10 minutes',strtotime($hour)));
+  $op = "17:00";
+  $cl = "07:00";
 
-// Tentukan jam buka dan kuota
-if (in_array($hari, ["monday", "tuesday", "wednesday", "thursday", "friday"])) {
-    $jamBuka = "07:00";
-    $jamTutup = "14:00";
-    $kuotaMaks = 100;
-} elseif ($hari == "saturday") {
-    $jamBuka = "07:00";
-    $jamTutup = "11:00";
-    $kuotaMaks = 40;
-} else {
-    $jamBuka = null; // Minggu
-}
-
-// === TAMPILAN MENU UTAMA ===
-if ($hari == "sunday") {
-    echo "
-    <div class='menu-box'>
-        <a href='submenucs.php?act=tdkpraktek' class='menu-option btn-large'>
-            CUSTOMER CARE
-        </a>
-    </div>
-    <div class='bottom-box'>
-        <a href='index.html' class='menu-option btn-small'>Kembali</a>
-    </div>
-    ";
-} elseif ($jamSekarang < $jamBuka || $jamSekarang > $jamTutup) {
-    echo "
-    <div class='menu-box'>
-        <div class='menu-option btn-large'>
-            <h2>Mohon Maaf Loket Sudah Tutup</h2>
-            <p>Jam Layanan: $jamBuka - $jamTutup</p>
-        </div>
-    </div>
-    <div class='bottom-box'>
-        <a href='index.html' class='menu-option btn-small'>Kembali</a>
-    </div>
-    ";
-} else {
-    echo "
-    <div class='menu-box'>
-        <a href='submenucs.php?act=rajal' class='menu-option btn-large'>
-            AMBIL NOMOR ANTRIAN
-        </a>
-    </div>
-    <div class='bottom-box'>
-        <a href='index.html' class='menu-option btn-small'>Kembali</a>
-    </div>
-    ";
-}
-
-// === PROSES AMBIL ANTRIAN ===
-if (isset($_GET['act']) && $_GET['act'] == "rajal") {
-
-    // Jika hari Minggu dan user memaksa ambil tiket
-    if ($hari == "sunday") {
-        echo "
-        <div class='popup-overlay'>
-            <div class='popup-box' style='background-color:#fee2e2;color:#991b1b;'>
-                <h2>⚠️ Layanan Tutup</h2>
-                <p>Mohon maaf, Customer Care tidak melayani pengambilan antrian pada hari Minggu.</p>
-            </div>
-        </div>
-        <script>
-            setTimeout(function(){ window.location.href = 'index.html'; }, 4000);
-        </script>
-        ";
-        exit;
-    }
-
-    $conn = mysqli_connect("localhost", "root", "root", "antrian");
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    $cek = mysqli_query($conn, "SELECT COUNT(*) as total FROM tbl_cs");
-    $data = mysqli_fetch_assoc($cek);
-    $numrow = $data['total'] ?? 0;
-
-    if ($numrow >= $kuotaMaks) {
-        echo "
-        <div class='menu-box'>
-            <div class='menu-option btn-large'>
-                <h2>Mohon Maaf, Kuota Antrian Customer Care Telah Habis</h2>
-                <p>Silahkan hubungi Loket Pendaftaran.</p>
-            </div>
-        </div>
-        <div class='bottom-box'>
-            <a href='index.html' class='menu-option btn-small'>Kembali</a>
-        </div>";
-    } else {
-        $tambah = $numrow + 1;
-        mysqli_query($conn, "INSERT INTO tbl_cs (id, keterangan, status, panggil, loket) 
-                             VALUES ($tambah, 'CUSTOMER CARE', 0, 0, 0)");
-
-        echo "
-        <div class='popup-overlay'>
-            <div class='popup-box'>
-                <h2>Antrian</h2>
-                <h3>Customer Care</h3>
-                <h1 style='font-size:4rem;'>CS$tambah</h1>
-                <p>Silakan tunggu nomor Anda dipanggil</p>
-            </div>
-        </div>
-
-        <script type='text/javascript'>
-            let w = window.open('', 'PRINT', 'width=400,height=600');
-            w.document.write('<html><head><title>Print Antrian</title></head><body>');
-            w.document.write(\"<center><h3>Customer Care</h3><h1 style='font-size:500%;'>CS$tambah</h1><p>Silahkan tunggu nomor Anda dipanggil</p></center>\");
-            w.document.write('</body></html>');
-            w.document.close();
-            w.focus();
-            w.print();
-            w.close();
-
-            setTimeout(function () { window.location.href = 'index.html'; }, 4000);
-        </script>
-        ";
-    }
-
-    mysqli_close($conn);
-}
-?>
+  if ($date == "sunday"){
+      echo "<a href='submenubpjs.php?act=tdkpraktek' class='btn'>RAWAT JALAN</a>";
+  } else if ($cenvertedTime > $op || $cenvertedTime < $cl){
+      echo "<a href='submenubpjs.php?act=tutup' class='btn'>RAWAT JALAN</a>";
+  } else {
+      echo "<a href='submenubpjs.php?act=rajal' class='btn'>RAWAT JALAN</a>";
+  }
+  ?>
+  <a href="submenuranapbpjs.php?act=ranap" class="btn">RAWAT INAP</a>
 </div>
 
+<div class="homebtn">
+  <a href="index.html" class="btn">Kembali</a>
+</div>
+
+<?php
+$act = $_GET['act'] ?? '';
+if ($act == "rajal") {
+    $cek = mysqli_query($conn, "SELECT * FROM tbl_bpjs");
+    $numrow = mysqli_num_rows($cek);
+    $tambah = $numrow + 1; 
+    mysqli_query($conn, "INSERT INTO tbl_bpjs (id,keterangan) VALUES ($tambah,'BPJS Rawat Jalan')");
+    echo "
+    <div id='rajal' class='w3-modal' style='display: block;'>
+      <div class='w3-modal-content'>
+        <h1 class='modal-title'>Antrian</h1>
+        <h2 class='modal-text'>Rawat Jalan</h2>
+        <h1 class='modal-big'>B$tambah</h1>
+        <h2 class='modal-text'>BPJS</h2> 
+      </div>
+    </div>
+    <script>openWin($tambah);setTimeout(()=>{window.location.href='index.html';},2000);</script>
+    ";
+} else if ($act == "ranap") {
+    $cek = mysqli_query($conn, "SELECT * FROM tbl_umum");
+    $numrow = mysqli_num_rows($cek);
+    $tambah = $numrow + 1; 
+    mysqli_query($conn, "INSERT INTO tbl_umum (id,keterangan) VALUES ($tambah,'BPJS Rawat Inap')");
+    echo "
+    <div id='ranap' class='w3-modal' style='display: block;'>
+      <div class='w3-modal-content'>
+        <h1 class='modal-title'>Antrian</h1>
+        <h2 class='modal-text'>Rawat Inap</h2>
+        <h1 class='modal-big'>A$tambah</h1>
+        <h2 class='modal-text'>BPJS</h2> 
+      </div>
+    </div>
+    <script>openWin($tambah);setTimeout(()=>{window.location.href='index.html';},2000);</script>
+    ";
+} else if ($act == "tutup"){
+    echo "
+    <div id='tutup' class='w3-modal' style='display: block;'>
+      <div class='w3-modal-content'>
+        <h1 class='modal-title'>Antrian BPJS</h1>
+        <h2 class='modal-text'>Mohon Maaf Antrian Pendaftaran Sudah Tutup</h2>
+        <h2 class='modal-text'>Silahkan hubungi bagian Pendaftaran</h2>
+      </div>
+    </div>
+    <script>setTimeout(()=>{window.location.href='index.html';},4000);</script>
+    ";
+} else if ($act == "tdkpraktek"){
+    echo "
+    <div id='tutup' class='w3-modal' style='display: block;'>
+      <div class='w3-modal-content'>
+        <h1 class='modal-title'>Antrian BPJS</h1>
+        <h2 class='modal-text'>Mohon Maaf pendaftaran sudah ditutup</h2>
+        <h2 class='modal-text'>Silahkan hubungi bagian Pendaftaran</h2>
+      </div>
+    </div>
+    <script>setTimeout(()=>{window.location.href='index.html';},4000);</script>
+    ";
+}
+?>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/vegas.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>
