@@ -55,19 +55,22 @@ function openWin(n) {
   date_default_timezone_set('Asia/Bangkok');
   $date = date("l");
   $hour = date("H:i");
-  $cenvertedTime = date('H:i',strtotime('+10 minutes',strtotime($hour)));
+  $convertedTime = date('H:i',strtotime('+10 minutes',strtotime($hour)));
   $op = "17:00";
   $cl = "07:00";
 
-  if ($date == "sunday"){
-      echo "<a href='submenubpjs.php?act=tdkpraktek' class='btn'>RAWAT JALAN</a>";
-  } else if ($cenvertedTime > $op || $cenvertedTime < $cl){
-      echo "<a href='submenubpjs.php?act=tutup' class='btn'>RAWAT JALAN</a>";
+  // normalize weekday to lowercase for reliable comparison
+  $lowerDate = strtolower($date);
+
+  if ($lowerDate === "sunday") {
+      echo '<a href="submenubpjs.php?act=tdkpraktek" class="btn">Ambil Antrian</a>';
+  } else if ($convertedTime > $op || $convertedTime < $cl) {
+      echo '<a href="submenubpjs.php?act=tutup" class="btn">Ambil Antrian</a>';
   } else {
-      echo "<a href='submenubpjs.php?act=rajal' class='btn'>RAWAT JALAN</a>";
+      echo '<a href="submenubpjs.php?act=rajal" class="btn">Ambil Antrian</a>';
   }
   ?>
-  <a href="#" class="btn">RAWAT INAP</a>
+  <!-- <a href="#" class="btn">RAWAT INAP</a> -->
 </div>
 
 <div class="homebtn">
@@ -124,7 +127,7 @@ if ($act == "rajal") {
     <div id='tutup' class='w3-modal' style='display: block;'>
       <div class='w3-modal-content'>
         <h1 class='modal-title'>Antrian BPJS</h1>
-        <h2 class='modal-text'>Mohon Maaf pendaftaran sudah ditutup</h2>
+        <h2 class='modal-text'><h2>Mohon maaf, Loket BPJS tidak melayani pengambilan antrian pada hari Minggu.</h2></h2>
         <h2 class='modal-text'>Silahkan hubungi bagian Pendaftaran</h2>
       </div>
     </div>

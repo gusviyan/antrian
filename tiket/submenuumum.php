@@ -62,10 +62,10 @@ $op = "23:59";
 $cl = "00:00";
 
 
-    echo "<a href='submenuumum.php?act=rajal' class='btn'>RAWAT JALAN</a>";
+    echo "<a href='submenuumum.php?act=rajal' class='btn'>Ambil Antrian</a>";
 
 ?>
-    <a href="#" class="btn">RAWAT INAP</a>
+    <!-- <a href="#" class="btn">RAWAT INAP</a> -->
 </div>
 
 <!-- tombol kembali -->
