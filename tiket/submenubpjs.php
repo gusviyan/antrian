@@ -55,8 +55,8 @@ function openWin(n) {
   date_default_timezone_set('Asia/Bangkok');
   $date = date("l");
   $hour = date("H:i");
-  $convertedTime = date('H:i',strtotime('+10 minutes',strtotime($hour)));
-  $op = "17:10";
+  $convertedTime = date('H:i',strtotime('+0 minutes',strtotime($hour)));
+  $op = "17:00";
   $cl = "06:45";
 
   // normalize weekday to lowercase for reliable comparison
