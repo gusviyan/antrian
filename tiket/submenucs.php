@@ -45,11 +45,11 @@ $jamSekarang = date("H:i");
 
 // Tentukan jam buka dan kuota
 if (in_array($hari, ["monday", "tuesday", "wednesday", "thursday", "friday"])) {
-    $jamBuka = "07:00";
+    $jamBuka = "06:45";
     $jamTutup = "14:00";
     $kuotaMaks = 100;
 } elseif ($hari == "saturday") {
-    $jamBuka = "07:00";
+    $jamBuka = "06:45";
     $jamTutup = "10:00";
     $kuotaMaks = 30;
 } else {

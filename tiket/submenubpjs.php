@@ -57,7 +57,7 @@ function openWin(n) {
   $hour = date("H:i");
   $convertedTime = date('H:i',strtotime('+10 minutes',strtotime($hour)));
   $op = "17:00";
-  $cl = "07:00";
+  $cl = "06:45";
 
   // normalize weekday to lowercase for reliable comparison
   $lowerDate = strtolower($date);
