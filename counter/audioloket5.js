@@ -589,7 +589,7 @@ var num1 = num;
 				'suara/ratus.mp3',		// 16
 				'suara/seratus.mp3',	// 17
 				'suara/loket.mp3',		// 18
-				'suara/ccare.mp3'		// 19
+				'suara/lima.mp3'		// 19
 				
 			]);
 	})();
