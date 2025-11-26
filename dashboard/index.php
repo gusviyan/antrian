@@ -37,7 +37,7 @@
         <div id="loket2">-</div>
       </div>
       <div class="box">
-        <h1>CUSTOMER CARE</h1>
+        <h1>CUSTOMER CARE (LOKET 5)</h1>
         <div id="loket5">-</div>
       </div>
     </div>

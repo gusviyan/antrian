@@ -221,6 +221,12 @@ footer.glass-footer {
   font-size: 14px;
   z-index: 10;
 }
+footer.glass-footer a {
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    
+}
 
 /* Tambahkan sedikit ruang di bawah konten agar tidak tertutup footer */
 body {

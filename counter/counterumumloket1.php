@@ -70,7 +70,7 @@ $(function(){ $('#auto').load('load.php'); setInterval(()=>$('#auto').load('load
   <script src="audioloket1.js"></script>
   <!-- ==== Footer ==== -->
 <footer class="glass-footer">
-  © 2025 Gusviyan - IT Dept RS Permata Pamulang | All Right Reserved
+      <a href=https://gusviyan.github.io/portofolio/ target="_blank" rel="noopener noreferrer">© 2025 Gusviyan - IT Dept RS Permata Pamulang | All Rights Reserved</a>
 </footer>
 </body>
 </html>
