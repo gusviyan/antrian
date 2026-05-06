@@ -157,7 +157,7 @@ if (isset($_GET['act']) && $_GET['act'] == "rajal") {
         <script type='text/javascript'>
             let w = window.open('', 'PRINT', 'width=400,height=600');
             w.document.write('<html><head><title>Print Antrian</title></head><body>');
-            w.document.write(\"<center><h3>Customer Care</h3><h1 style='font-size:500%;'>CS$tambah</h1><p>Silahkan tunggu nomor Anda dipanggil</p></center>\");
+            w.document.write(\"<center><h3>Customer Care</h3><h1 style='font-size:500%;'>CS$tambah</h1><p>Silahkan menunggu No. Antrian terakhir jika No. Antrian anda terlewat</p></center>\");
             w.document.write('</body></html>');
             w.document.close();
             w.focus();
